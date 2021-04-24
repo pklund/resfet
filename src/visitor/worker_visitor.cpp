@@ -96,7 +96,10 @@ static void ignThreadFunc(timestamp_t time, timestamp_t preigniteTime, timestamp
         ignThreadLogger.info("Received burn signal, starting burn\n");
 
         // Send signal to Arduino via heater MOSFET:
-        bcm2835_gpio_write(DRIVER5, HIGH);
+        //
+        // We want we want to use Mk1.1's heater to send a signal
+        // to our Arduino to turn it on. 
+        bcm2835_gpio_write(HEATING_TAPE, HIGH);
 
         // Keep track of ignition time
         initTime = get_elapsed_time_ms();
